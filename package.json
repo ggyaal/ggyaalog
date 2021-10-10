@@ -6,11 +6,24 @@
   "author": "ggyaal <ggyaal@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --exec ts-node src/index"
+    "start": "nodemon --exec ts-node src/index --ext ts,js",
+    "migrate": "npx prisma migrate dev --preview-feature"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "nodemon": "^2.0.13",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.4.16",
+    "@graphql-tools/load-files": "^6.5.1",
+    "@graphql-tools/merge": "^8.1.2",
+    "@graphql-tools/schema": "^8.2.0",
+    "@prisma/client": "^3.2.1",
+    "apollo-server": "^3.3.0",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "graphql": "^15.6.1"
   }
 }
