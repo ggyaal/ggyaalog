@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --exec ts-node src/index --ext ts,js",
-    "migrate": "npx prisma migrate dev --preview-feature"
+    "migrate": "npx prisma migrate dev --preview-feature",
+    "studio": "npx prisma studio"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

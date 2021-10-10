@@ -1,8 +1,10 @@
 require("dotenv").config();
 import express from "express";
 import logger from "morgan";
+import http from "http";
 import { ApolloServer } from "apollo-server-express";
 import schema from "./schema";
+import client from "./client";
 import { getAccToken, getUser } from "./shared/shared.utils";
 
 const PORT = process.env.PORT;
@@ -15,13 +17,14 @@ const apollo = new ApolloServer({
       const {
         req: { headers },
       } = ctx;
-      let loggedUser = await getUser(headers.accToken as string);
+      let loggedUser = await getUser(headers.acctoken as string);
       let newAccToken;
       if (!loggedUser) {
-        newAccToken = await getAccToken(headers.refToken as string);
+        newAccToken = await getAccToken(headers.reftoken as string);
         loggedUser = await getUser(newAccToken);
       }
       return {
+        client,
         loggedUser,
         newAccToken,
       };
@@ -30,10 +33,12 @@ const apollo = new ApolloServer({
 });
 
 const app = express();
-app.use(logger("tiny"));
+// app.use(logger("tiny"));
 
 apollo.start().then(() => apollo.applyMiddleware({ app }));
 
-app.listen({ port: PORT }, () =>
+const httpServer = http.createServer(app);
+
+httpServer.listen(PORT, () =>
   console.log(`Server is running on http://localhost:${PORT}`)
 );

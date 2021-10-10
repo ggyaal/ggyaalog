@@ -1,5 +1,22 @@
-import { PrismaClient } from ".prisma/client";
-import { Resolver } from "@apollo/client";
+import { PrismaClient, User } from ".prisma/client";
+import { FragmentMap } from "@apollo/client/utilities";
+import { FieldNode } from "graphql";
+
+type Context = {
+  client: PrismaClient;
+  loggedUser?: User;
+  newAccToken?: string;
+};
+
+export type Resolver = (
+  root: any,
+  args?: any,
+  context?: Context,
+  info?: {
+    field: FieldNode;
+    fragmentMap: FragmentMap;
+  }
+) => any;
 
 export type Resolvers = {
   [key: string]: {

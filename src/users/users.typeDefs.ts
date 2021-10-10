@@ -8,7 +8,7 @@ export default gql`
     email: String
     socialId: String
     avator: String
-    post: [Post]
+    post(page: Int!): [Post]
     comment: [Comment]
     like: [Like]
     createdAt: String!
