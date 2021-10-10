@@ -11,3 +11,10 @@ export type Result = {
   ok: boolean;
   error?: string;
 };
+
+export type Login = {
+  ok: boolean;
+  accToken?: string;
+  refToken?: string;
+  error?: string;
+};
