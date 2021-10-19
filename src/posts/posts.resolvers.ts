@@ -10,6 +10,8 @@ const resolvers: Resolvers = {
           postId: id,
         },
       }),
+    comments: ({ id }, _, { client }) =>
+      client.comment.findMany({ where: { postId: id } }),
   },
 };
 

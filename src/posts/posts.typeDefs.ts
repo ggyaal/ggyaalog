@@ -9,6 +9,7 @@ export default gql`
     views: Int!
     writer: User
     like: Int
+    comments: [Comment]
     createdAt: String!
     updatedAt: String
   }
