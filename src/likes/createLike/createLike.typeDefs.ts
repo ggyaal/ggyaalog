@@ -2,6 +2,6 @@ import { gql } from "apollo-server-express";
 
 export default gql`
   type Mutation {
-    createLike(postId: Int!, userId: Int!): Result!
+    createLike(postId: Int!): Result!
   }
 `;
